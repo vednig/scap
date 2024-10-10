@@ -153,7 +153,7 @@ pub fn create_capturer(options: &Options, tx: mpsc::Sender<Frame>) -> WCStream {
 
     let settings = match target {
         Target::Display(display) => Settings::Display(WCSettings::new(
-            WCMonitor::from_raw_hmonitor(display.raw_handle.0),
+            WCMonitor::from_raw_hmonitor(display.raw_handle.0 as *mut std::ffi::c_void),
             show_cursor,
             DrawBorderSettings::Default,
             color_format,
