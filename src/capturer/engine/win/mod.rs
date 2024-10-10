@@ -163,7 +163,7 @@ pub fn create_capturer(options: &Options, tx: mpsc::Sender<Frame>) -> WCStream {
             },
         )),
         Target::Window(window) => Settings::Window(WCSettings::new(
-            WCWindow::from_raw_hwnd(window.raw_handle.0),
+            WCWindow::from_raw_hwnd(window.raw_handle.0  as *mut std::ffi::c_void),
             show_cursor,
             DrawBorderSettings::Default,
             color_format,
